@@ -30,7 +30,7 @@ server.use(cors());
 // Header
 server.get("/api/v1/artists/:artistID", (req, res) => {
   console.log(req.url);
-  res.redirect("http://localhost:3004" + req.url);
+  res.redirect("http://18.218.64.3:3004" + req.url);
 });
 
 server.listen(3000, console.log("Listening on:", 3000));
