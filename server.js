@@ -13,24 +13,28 @@ server.use(express.static(path.join(__dirname, "./"), { maxAge: "30 days" }));
 server.use(cors());
 
 // Albums & Player
-// server.get("/api/v1/artists/:artistID", (req, res) => {
-//   res.redirect("http://localhost:3004/api/v1/artists/" + req.params.artistID);
-// });
+server.all("/api/v1/artists/:artistID/albums/", (req, res, next) => {
+  // console.log('ec2-54-164-130-42.compute-1.amazonaws.com' + req.url);
+  res.redirect("http://54.164.130.42" + req.url);
+  next();
+});
 
-// Related Artists
-// server.get("/api/v1/artists/:artistID", (req, res) => {
-//   res.redirect("http://18.206.245.56" + req.url);
-// });
+server.get("/api/v1/artists/:id/related-artists", (req, res) => {
+  const { id } = req.params;
+  res.redirect(
+    `http://54.148.230.254:3002/api/v1/artists/${id}/related-artists`
+  );
+});
 
 // Popular Songs
-// server.get("/api/v1/artists/:artistID", (req, res) => {
-//   res.redirect("http://18.224.17.253" + req.url);
-// });
+server.get("/api/v1/artists/:id/popular-songs", (req, res) => {
+  res.redirect("http://13.56.189.115" + req.url);
+});
 
 // Header
 server.get("/api/v1/artists/:artistID", (req, res) => {
   console.log(req.url);
-  res.redirect("http://18.218.64.3:3004" + req.url);
+  res.redirect("http://18.221.180.131" + req.url);
 });
 
 server.listen(3000, console.log("Listening on:", 3000));
